@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
         ESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB, XXXXX, XXXXX, DEL, XXXXX, XXXXX,                   MINS,   EQL,  LCBR,  RCBR,  PIPE,   GRV,\
+      CTLTB, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   MINS,   EQL,  LCBR,  RCBR,  PIPE,   GRV,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  BSLS,  TILD,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  LEFT,  UP,    DOWN, RIGHT, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, DOWN, LEFT, RIGHT, XXXXX, RSFT,\
+       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, DOWN, LEFT, RIGHT, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   LGUI, LOWER,   SPC,      ENT, RAISE, RALT \
                               //`--------------------'  `--------------------'
@@ -142,11 +142,11 @@ void matrix_init_user(void) {
 const char *read_layer_state(void);
 const char *read_logo(void);
 void set_keylog(uint16_t keycode, keyrecord_t *record);
-//const char *read_keylog(void);
+const char *read_keylog(void);
 const char *read_keylogs(void);
-//
-//const char *read_mode_icon(bool swap);
-//const char *read_host_led_state(void);
+
+const char *read_mode_icon(bool swap);
+const char *read_host_led_state(void);
 // void set_timelog(void);
 // const char *read_timelog(void);
 
@@ -160,18 +160,14 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
     matrix_write_ln(matrix, read_layer_state());
 //    matrix_write_ln( matrix, read_keylog());
     matrix_write_ln(matrix, read_keylogs());
- //   matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
-    if (!keymap_config.swap_lalt_lgui) {
-       matrix_write_P(matrix, PSTR("Mac"));
-    } else {
-        matrix_write_P(matrix, PSTR("Win"));
-    }    //matrix_write_ln(matrix, read_host_led_state());
+    //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
+    //matrix_write_ln(matrix, read_host_led_state());
     //matrix_write_ln(matrix, read_timelog());
   } else {
     matrix_write(matrix, read_logo());
 //    matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
 //    matrix_write_ln(matrix, read_host_led_state());
-    oled_scroll_left();
+oled_scroll_left();
   }
 }
 
