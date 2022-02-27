@@ -1,7 +1,6 @@
 /*
 Copyright 2019 @foostan
 Copyright 2020 Drashna Jaelre <@drashna>
-Copyright 2021 Elliot Powell  <@e11i0t23>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,7 +16,27 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include QMK_KEYBOARD_H
-#include "../iromu/layout.c"
-#include "../iromu/underglow.c"
 
+
+#pragma once
+
+//#define USE_MATRIX_I2C
+#ifdef KEYBOARD_crkbd_rev1_common
+#    undef USE_I2C
+#    define USE_SERIAL
+#endif
+
+/* Select hand configuration */
+
+#define MASTER_LEFT
+// #define MASTER_RIGHT
+// #define EE_HANDS
+
+#define USE_SERIAL_PD2
+
+#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 100
+#define RGBLIGHT_SLEEP
+
+#define RGBLIGHT_EFFECT_BREATHING
+#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
